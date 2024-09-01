@@ -25,35 +25,31 @@ export default function Harshit() {
       }
     };
 
-    // const fetchScore = async () => {
-    //   try {
-    //     const response = await axios.get(
-    //       "http://localhost:5000/generating_live_score"
-    //     );
-    //     setScore(response.data.score);
-    //   } catch (error) {
-    //     console.error("Error fetching the live score:", error);
-    //   }
-    // };
+    const fetchScore = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/generating_live_score"
+        );
+        setScore(response.data.score);
+      } catch (error) {
+        console.error("Error fetching the live score:", error);
+      }
+    };
 
     fetchMatchData();
-    // fetchScore();
+    fetchScore();
 
     // Fetch data every 5 seconds
     const interval = setInterval(() => {
       fetchMatchData();
-      // fetchScore();
-    }, 2000);
+      fetchScore();
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <>
-      <div>
-        <h1>Live Score</h1>
-        {score !== null ? <p>Player 1 Score: {score}</p> : <p>Loading...</p>}
-      </div>
       <div className="min-h-screen bg-black py-12 pt-36">
         <Spotlight
           className="-top-40 left-0 md:left-60 md:-top-20"
@@ -111,7 +107,24 @@ export default function Harshit() {
               </CardBody>
             </CardContainer>
           </div>
-
+          <div className="flex flex-wrap justify-center mt-11 m-9 ml-7 gap-5">
+            <div>
+              <img
+                src="http://localhost:5000/yolo_video_feed"
+                width="640"
+                height="480"
+                className="border border-gray-200 rounded-lg"
+              />
+            </div>
+            <div>
+              <img
+                src="http://localhost:5000/yolo_video_feed"
+                width="640"
+                height="480"
+                className="border border-gray-200 rounded-lg"
+              />
+            </div>
+          </div>
           {matchData && (
             <>
               <div className="flex flex-wrap justify-center gap-7 mt-8">
@@ -141,28 +154,14 @@ export default function Harshit() {
               </div>
             </>
           )}
-
-          <h1 className="text-lg md:text-2xl text-center font-sans font-bold mb-8 text-red-600 mt-8">
-            Video feed
-          </h1>
-          <div className="flex flex-wrap justify-center">
-            <div>
-              <img
-                src="http://localhost:5000/yolo_video_feed"
-                width="640"
-                height="480"
-                className="border border-gray-200 rounded-lg"
-              />
-            </div>
-          </div>
-          <Link href={"/actual"} className="m-11 p-6">
-            <BackgroundGradient key={1} className="rounded-[22px]">
-              <h1 className="text-lg md:text-4xl text-center font-sans font-bold mb-8 text-red-300">
-                {"Show Video without Analytics and CV integration"}
-              </h1>
-            </BackgroundGradient>
-          </Link>
         </div>
+        <Link href={"/actual"} className="m-6 p-4 w-auto max-w-xs">
+          <BackgroundGradient key={1} className="rounded-[12px] p-4">
+            <h1 className="text-base md:text-lg text-center font-sans font-bold mb-4 text-red-300">
+              {"Show actual video"}
+            </h1>
+          </BackgroundGradient>
+        </Link>
       </div>
     </>
   );

@@ -75,6 +75,36 @@ def generate_yolo_frames():
 
         yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
     cap.release()
+def generate_actual_frames():
+    cap = cv2.VideoCapture(0)
+    while True:
+        success, frame = cap.read()
+        if not success:
+            break
+
+        # Update match data based on frame analysis
+        update_match_data_from_frame(frame)
+
+        # Annotate frame with YOLO detections
+        results = model.predict(frame)
+        for result in results:
+            boxes = result.boxes.cpu().numpy()
+            for box in boxes:
+                (x, y, w, h) = box.xyxy[0]
+                classname = str(box.cls[0])
+
+                x = int(x)
+                y = int(y)
+                w = int(w)
+                h = int(h)
+
+              
+
+        ret, buffer = cv2.imencode('.jpg', frame)
+        frame = buffer.tobytes()
+
+        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+    cap.release()
 
 @app.route('/get_match_data', methods=['GET'])
 def get_match_data():
@@ -84,5 +114,8 @@ def get_match_data():
 def yolo_video_feed():
     return Response(generate_yolo_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@app.route('/actula-video-feed')
+def actual_video_feed():
+    return Response(generate_actual_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

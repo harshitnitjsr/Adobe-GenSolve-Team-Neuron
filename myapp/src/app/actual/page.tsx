@@ -25,35 +25,31 @@ export default function Harshit() {
       }
     };
 
-    // const fetchScore = async () => {
-    //   try {
-    //     const response = await axios.get(
-    //       "http://localhost:5000/generating_live_score"
-    //     );
-    //     setScore(response.data.score);
-    //   } catch (error) {
-    //     console.error("Error fetching the live score:", error);
-    //   }
-    // };
+    const fetchScore = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/generating_live_score"
+        );
+        setScore(response.data.score);
+      } catch (error) {
+        console.error("Error fetching the live score:", error);
+      }
+    };
 
     fetchMatchData();
-    // fetchScore();
+    fetchScore();
 
     // Fetch data every 5 seconds
     const interval = setInterval(() => {
       fetchMatchData();
-      // fetchScore();
-    }, 2000);
+      fetchScore();
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <>
-      <div>
-        <h1>Live Score</h1>
-        {score !== null ? <p>Player 1 Score: {score}</p> : <p>Loading...</p>}
-      </div>
       <div className="min-h-screen bg-black py-12 pt-36">
         <Spotlight
           className="-top-40 left-0 md:left-60 md:-top-20"
@@ -63,6 +59,7 @@ export default function Harshit() {
         <h1 className="text-lg md:text-7xl text-center font-sans font-bold mb-8 text-white">
           Video with analysis
         </h1>
+
         <div className="flex flex-wrap justify-center">
           <div className="min-h-screen bg-black py-12 pt-36">
             <BackgroundGradient key={1} className="rounded-[22px]">
@@ -111,6 +108,16 @@ export default function Harshit() {
               </CardBody>
             </CardContainer>
           </div>
+          <div className="relative z-1 flex flex-wrap justify-center m-10">
+            <div className="relative z-20 w-full max-w-[960px]">
+              <img
+                src="http://localhost:5000/actula-video-feed"
+                width="960"
+                height="720"
+                className="border border-gray-200 rounded-lg"
+              />
+            </div>
+          </div>
 
           {matchData && (
             <>
@@ -141,28 +148,14 @@ export default function Harshit() {
               </div>
             </>
           )}
-
-          <h1 className="text-lg md:text-2xl text-center font-sans font-bold mb-8 text-red-600 mt-8">
-            Video feed
-          </h1>
-          <div className="flex flex-wrap justify-center">
-            <div>
-              <img
-                src="http://localhost:5000/yolo_video_feed"
-                width="640"
-                height="480"
-                className="border border-gray-200 rounded-lg"
-              />
-            </div>
-            <Link href={"/courses"} className="m-11 p-6">
-              <BackgroundGradient key={1} className="rounded-[22px]">
-                <h1 className="text-lg md:text-4xl text-center font-sans font-bold mb-8 text-red-300">
-                  {"Show Video with Analytics and CV integration"}
-                </h1>
-              </BackgroundGradient>
-            </Link>
-          </div>
         </div>
+        <Link href={"/courses"} className="m-6 p-4 w-auto max-w-xs">
+          <BackgroundGradient key={1} className="rounded-[12px] p-4">
+            <h1 className="text-base md:text-lg text-center font-sans font-bold mb-4 text-red-300">
+              {"Show Video with Analytics and CV integration"}
+            </h1>
+          </BackgroundGradient>
+        </Link>
       </div>
     </>
   );
