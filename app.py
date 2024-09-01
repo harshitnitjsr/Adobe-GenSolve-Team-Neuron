@@ -41,16 +41,40 @@ def generate_shot_data():
 
 # Original video feed
 def generate_original_frames():
-    cap = cv2.VideoCapture(0)
-    while True:
+  cap = cv2.VideoCapture(0)
+  while True:
         success, frame = cap.read()
         if not success:
             break
-        
+
+        results = model.predict(frame)
+        for result in results:
+            boxes = result.boxes.cpu().numpy()
+            for box in boxes:
+                (x, y, w, h) = box.xyxy[0]
+                classname = str(box.cls[0])
+                
+                x = int(x)
+                y = int(y)
+                w = int(w)
+                h = int(h)
+                
+                # cv2.putText(frame, classname, (x, y), 1, 1, (255, 0, 0), 2)
+                # cv2.rectangle(frame, (w, h), (x, y), (255, 255, 0), 2)
+
         ret, buffer = cv2.imencode('.jpg', frame)
         frame = buffer.tobytes()
+
+        shot_data = generate_shot_data()
+        ref = db.reference('liveMatch')
+        match_data = ref.get()
+        match_data['scoreArray'].append(shot_data)
+        match_data['liveScore'][shot_data['player']] += 1
+        ref.set(match_data)
+        
         yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-    cap.release()
+  cap.release()
+
 
 # YOLO-processed video feed
 def generate_yolo_frames():

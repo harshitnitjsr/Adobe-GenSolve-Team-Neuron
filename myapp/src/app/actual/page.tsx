@@ -34,9 +34,7 @@ export default function Harshit() {
           fill="white"
         />
         <TypewriterEffectSmoothDemo />
-        <h1 className="text-lg md:text-7xl text-center font-sans font-bold mb-8 text-white">
-          Video with analysis
-        </h1>
+
         <div className="flex flex-wrap justify-center">
           <div className="min-h-screen bg-black py-12 pt-36">
             <BackgroundGradient key={1} className="rounded-[22px]">
@@ -115,10 +113,16 @@ export default function Harshit() {
               </div>
             </>
           )}
-
+          <Link href={"/courses"} className="m-11 p-6">
+            <BackgroundGradient key={1} className="rounded-[22px]">
+              <h1 className="text-lg md:text-4xl text-center font-sans font-bold mb-8 text-red-300">
+                {"Show Video with Analytics and CV integration"}
+              </h1>
+            </BackgroundGradient>
+          </Link>
           <img
-            src="http://localhost:5000/yolo_video_feed"
-            alt="YOLO Webcam Stream"
+            src="http://localhost:5000/original_video_feed"
+            alt="Actual Webcam Stream"
             style={{ width: "100vw", height: "600px" }}
           />
         </div>
