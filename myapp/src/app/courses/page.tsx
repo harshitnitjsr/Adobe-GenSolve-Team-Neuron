@@ -122,6 +122,13 @@ export default function Harshit() {
             style={{ width: "100vw", height: "600px" }}
           />
         </div>
+        <Link href={"/actual"} className="m-11 p-6">
+          <BackgroundGradient key={1} className="rounded-[22px]">
+            <h1 className="text-lg md:text-4xl text-center font-sans font-bold mb-8 text-red-300">
+              {"Show Video without CV integration"}
+            </h1>
+          </BackgroundGradient>
+        </Link>
       </div>
     </>
   );
