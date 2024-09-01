@@ -138,7 +138,7 @@ export default function Harshit() {
           </div>
         </LampDemo>
 
-        <Link href={"/courses"} className="m-6 p-4 w-auto max-w-xs">
+        <Link href={"/videocv"} className="m-6 p-4 w-auto max-w-xs">
           <BackgroundGradient key={1} className="rounded-[12px] p-4">
             <h1 className="text-base md:text-lg text-center font-sans font-bold mb-4 text-red-300">
               {"Show Video with Analytics and CV integration"}
