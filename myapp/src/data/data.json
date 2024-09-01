@@ -1,0 +1,45 @@
+{
+  "title": "GameSense: Key Features and Objectives",
+  "features": [
+    {
+      "title": "Game Selection",
+      "description": "Choose from Badminton, Tennis, or Table Tennis."
+    },
+    {
+      "title": "Play Area Marking",
+      "description": "Precisely identify and mark court boundaries, net, and critical areas."
+    },
+    {
+      "title": "Ball/Shuttle Tracking",
+      "description": "Track the location, speed, and trajectory of the shuttlecock or ball."
+    },
+    {
+      "title": "Player Tracking",
+      "description": "Monitor player movements and positioning on the court."
+    },
+    {
+      "title": "Event Detection",
+      "description": "Detect key events like ball/shuttle hitting the ground, net, and fouls."
+    },
+    {
+      "title": "Automated Scoring",
+      "description": "Automatically update scores, including points and fouls."
+    },
+    {
+      "title": "Rally Length Calculation",
+      "description": "Calculate and display the length of each rally."
+    },
+    {
+      "title": "Player Movement Metrics",
+      "description": "Measure and provide detailed statistics on distance covered and active time."
+    },
+    {
+      "title": "Bonus: Real-Time Commentary",
+      "description": "Generate real-time commentary to enhance viewer engagement."
+    },
+    {
+      "title": "Bonus: Doubles Game",
+      "description": "Expand to include doubles games for a broader competitive scope."
+    }
+  ]
+}
