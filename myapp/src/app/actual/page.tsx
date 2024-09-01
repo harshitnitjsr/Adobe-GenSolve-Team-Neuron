@@ -13,8 +13,8 @@ import { CardSpotlightDemo } from "@/components/MySpecialCard";
 import { CardSpotlightDemoScore } from "@/components/MyScore";
 
 export default function Harshit() {
-  const [matchData, setMatchData] = useState(null);
-  const [score, setScore] = useState(null);
+  const [matchData, setMatchData] = useState<any>(null);
+  const [score, setScore] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchMatchData = async () => {
@@ -114,19 +114,21 @@ export default function Harshit() {
                   </h1> */}
 
                         <br />
-                        {matchData?.scoreArray?.slice(-8).map((shot, index) => (
-                          <BackgroundGradient
-                            key={index}
-                            className="rounded-[22px]"
-                          >
-                            <CardSpotlightDemo
-                              shot_number={index}
-                              prop={shot.distance}
-                              speed={shot.speed}
-                              player={shot.player}
-                            />
-                          </BackgroundGradient>
-                        ))}
+                        {matchData?.scoreArray
+                          ?.slice(-8)
+                          .map((shot: any, index: any) => (
+                            <BackgroundGradient
+                              key={index}
+                              className="rounded-[22px]"
+                            >
+                              <CardSpotlightDemo
+                                shot_number={index}
+                                prop={shot.distance}
+                                speed={shot.speed}
+                                player={shot.player}
+                              />
+                            </BackgroundGradient>
+                          ))}
                       </div>
                     </>
                   )}
