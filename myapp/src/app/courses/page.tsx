@@ -1,33 +1,59 @@
 "use client";
 
 import Image from "next/image";
-import { ref, onValue } from "firebase/database";
-import { database } from "../../utils/firebase";
-import React, { useEffect, useState } from "react";
-import { CardBody, CardContainer, CardItem } from "../../components/ui/3d-card";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Link from "next/link";
-import data from "../../data/data.json";
-import { Button } from "@/components/ui/moving-border";
+import { CardBody, CardContainer, CardItem } from "../../components/ui/3d-card";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import { Spotlight } from "@/components/ui/Spotlight";
 import { TypewriterEffectSmoothDemo } from "@/components/Name";
 
 export default function Harshit() {
   const [matchData, setMatchData] = useState(null);
+  const [score, setScore] = useState(null);
 
   useEffect(() => {
-    const matchDataRef = ref(database, "liveMatch");
+    const fetchMatchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/get_match_data"
+        );
+        setMatchData(response.data);
+      } catch (error) {
+        console.error("Error fetching the match data:", error);
+      }
+    };
 
-    const unsubscribe = onValue(matchDataRef, (snapshot) => {
-      const data = snapshot.val();
-      setMatchData(data);
-    });
+    // const fetchScore = async () => {
+    //   try {
+    //     const response = await axios.get(
+    //       "http://localhost:5000/generating_live_score"
+    //     );
+    //     setScore(response.data.score);
+    //   } catch (error) {
+    //     console.error("Error fetching the live score:", error);
+    //   }
+    // };
 
-    return () => unsubscribe();
+    fetchMatchData();
+    // fetchScore();
+
+    // Fetch data every 5 seconds
+    const interval = setInterval(() => {
+      fetchMatchData();
+      // fetchScore();
+    }, 2000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <>
+      <div>
+        <h1>Live Score</h1>
+        {score !== null ? <p>Player 1 Score: {score}</p> : <p>Loading...</p>}
+      </div>
       <div className="min-h-screen bg-black py-12 pt-36">
         <Spotlight
           className="-top-40 left-0 md:left-60 md:-top-20"
@@ -116,19 +142,27 @@ export default function Harshit() {
             </>
           )}
 
-          <img
-            src="http://localhost:5000/yolo_video_feed"
-            alt="YOLO Webcam Stream"
-            style={{ width: "100vw", height: "600px" }}
-          />
+          <h1 className="text-lg md:text-2xl text-center font-sans font-bold mb-8 text-red-600 mt-8">
+            Video feed
+          </h1>
+          <div className="flex flex-wrap justify-center">
+            <div>
+              <img
+                src="http://localhost:5000/yolo_video_feed"
+                width="640"
+                height="480"
+                className="border border-gray-200 rounded-lg"
+              />
+            </div>
+          </div>
+          <Link href={"/actual"} className="m-11 p-6">
+            <BackgroundGradient key={1} className="rounded-[22px]">
+              <h1 className="text-lg md:text-4xl text-center font-sans font-bold mb-8 text-red-300">
+                {"Show Video without Analytics and CV integration"}
+              </h1>
+            </BackgroundGradient>
+          </Link>
         </div>
-        <Link href={"/actual"} className="m-11 p-6">
-          <BackgroundGradient key={1} className="rounded-[22px]">
-            <h1 className="text-lg md:text-4xl text-center font-sans font-bold mb-8 text-red-300">
-              {"Show Video without CV integration"}
-            </h1>
-          </BackgroundGradient>
-        </Link>
       </div>
     </>
   );
