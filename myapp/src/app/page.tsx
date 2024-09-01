@@ -9,21 +9,23 @@ import Whychooseus from "@/components/Whychooseus";
 
 export default function Home() {
   return (
-    <main className="bg-black/[0.96] bg-grid-white/[0.02]">
-      <div className="flex justify-between py-12 px-12">
-        <div className="mr-8">
-          <TypewriterEffectSmoothDemo />
-          <Spotlight />
-          <HeroSection />
+    <>
+      <main className="bg-black/[0.96] bg-grid-white/[0.02]">
+        <div className="flex justify-between py-12 px-12">
+          <div className="mr-8">
+            <TypewriterEffectSmoothDemo />
+            <Spotlight />
+            <HeroSection />
+          </div>
+          <div className="ml-8">
+            <ThreeDCardDemo />
+          </div>
         </div>
-        <div className="ml-8">
-          <ThreeDCardDemo />
-        </div>
-      </div>
-      <FeautredCourses />
-      <Whychooseus />
-      <Testimonial />
-      <MeetOurInstructors />
-    </main>
+        <FeautredCourses />
+        <Whychooseus />
+        <Testimonial />
+        <MeetOurInstructors />
+      </main>
+    </>
   );
 }

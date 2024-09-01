@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Spotlight } from "./ui/Spotlight";
 import { Button } from "./ui/moving-border";
+import { TextGenerateEffectDemo } from "./MyText";
 function HeroSection() {
   return (
     <div
@@ -8,18 +9,19 @@ function HeroSection() {
     relative overflow-hidden"
     >
       <div className="p-4 relative z-10 w-full text-center">
-        <h1 className="mt-20 md:mt-0 text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
+        <h1 className="mt-20 md:mt-0 text-2xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
           GameSense: Automated Sports Insights
         </h1>
 
-        <p className="mt-4 font-normal text-base md:text-lg text-neutral-300 max-w-lg mx-auto">
-          {`GameSense leverages computer vision and AI/ML to revolutionize sports
+        <TextGenerateEffectDemo
+          words={`GameSense leverages computer vision and AI/ML to revolutionize sports
           analytics for two-player games like badminton. Key features include player and ball tracking, event
           detection, automated score-keeping, and detailed metrics. An ambitious
           goal is live commentary, showcasing AI’s role in sports broadcasting.
           Future plans include expanding to doubles games to further enhance the
           spectator experience.`}
-        </p>
+        />
+
         <div className="mt-4">
           <Link href={"/courses"}>
             <Button

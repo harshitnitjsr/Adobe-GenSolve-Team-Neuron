@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-three/fiber": "^8.17.6",
+    "@types/three": "^0.168.0",
     "axios": "^1.7.7",
     "bcryptjs": "^2.4.3",
-    "clsx": "^2.1.0",
+    "clsx": "^2.1.1",
     "firebase": "^10.13.1",
-    "framer-motion": "^11.0.24",
+    "framer-motion": "^11.3.31",
     "jsonwebtoken": "^9.0.2",
     "mini-svg-data-uri": "^1.4.4",
     "mongoose": "^8.2.4",
@@ -22,7 +24,8 @@
     "react": "^18",
     "react-dom": "^18",
     "simplex-noise": "^4.0.1",
-    "tailwind-merge": "^2.2.2"
+    "tailwind-merge": "^2.5.2",
+    "three": "^0.168.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
