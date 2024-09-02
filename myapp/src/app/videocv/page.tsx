@@ -101,12 +101,14 @@ export default function Harshit() {
                   className="border border-gray-200 rounded-lg"
                 />
               </div>
+              
               <div>
                 <img
-                  src="http://localhost:5000/yolo_video_feed"
+                  src="http://localhost:5000/match_map_feed"
                   width="640"
-                  height="480"
+                  height="900"
                   className="border border-gray-200 rounded-lg"
+                  style={{height:"682px",width:"543px"}}
                 />
               </div>
             </div>

@@ -94,7 +94,7 @@ export default function Harshit() {
             <div className="relative z-1 flex flex-wrap justify-center m-10">
               <div className="relative z-20 w-full max-w-[960px]">
                 <img
-                  src="http://localhost:5000/actula-video-feed"
+                  src="http://localhost:5000/actual_video_feed"
                   width="960"
                   height="720"
                   className="border border-gray-200 rounded-lg"
