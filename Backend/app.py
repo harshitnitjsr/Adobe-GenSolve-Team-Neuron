@@ -17,6 +17,10 @@ match_data = {
     "liveScore": {"Player 1": 10, "Player 2": 7}
 }
 
+def tracking_shuttle_cock():
+    for frames in main():
+        actual_frame_bytes, frame_bytes, play_area_with_players_bytes = frames
+        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + actual_frame_bytes + b'\r\n')
 
 def update_match_data_from_frame(frame):
     global match_data
@@ -38,7 +42,7 @@ def update_match_data_from_frame(frame):
 def generate_yolo_frames():
     for frames in main():
         actual_frame_bytes, frame_bytes, play_area_with_players_bytes = frames
-        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + actual_frame_bytes + b'\r\n')
+        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
 
 def generate_actual_frames():
     for frames in main():
