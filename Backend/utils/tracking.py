@@ -92,15 +92,15 @@ def update_play_area_with_players(bboxes_xyxy,bboxes_xyxy_sc, court_points, warp
         center_y = (y1+y2)/2
 
         cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 255), 2)
-        new_center_x, new_center_y = perspective_transform_point(center_x, center_y, M)
-        new_center_y = np.clip(new_center_y, 0, warped_court.shape[0])
-        new_center_x = np.clip(new_center_x, 0, warped_court.shape[1])
+        # new_center_x, new_center_y = perspective_transform_point(center_x, center_y, M)
+        # new_center_y = np.clip(new_center_y, 0, warped_court.shape[0])
+        # new_center_x = np.clip(new_center_x, 0, warped_court.shape[1])
 
         # if (new_center_y > warped_court.shape[0]/2):
         #     new_center_y += 170
 
-        color = [(0, 0, 255), (255, 0, 0), (0, 255, 0)][track_id % 3]
-        cv2.circle(play_area_with_players, (int(new_center_x), int(new_center_y)), 5, color, -1)
+        # color = [(0, 0, 255), (255, 0, 0), (0, 255, 0)][track_id % 3]
+        # cv2.circle(play_area_with_players, (int(new_center_x), int(new_center_y)), 5, color, -1)
 
 
     return play_area_with_players
