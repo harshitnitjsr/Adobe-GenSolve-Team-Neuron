@@ -72,10 +72,12 @@ def update_play_area_with_players(bboxes_xyxy,bboxes_xyxy_sc, court_points, warp
         new_center_y = np.clip(new_center_y, 0, warped_court.shape[0])
         new_center_x = np.clip(new_center_x, 0, warped_court.shape[1])
 
-        # if (new_center_y > warped_court.shape[0]/2):
-        #     new_center_y += 170
+        if (new_center_y > warped_court.shape[0]/2):
+            color = (0, 0, 255)
+        else:
+            color = (255, 0, 0)
 
-        color = [(0, 0, 255), (255, 0, 0), (0, 255, 0)][track_id % 3]
+        # color = [(0, 0, 255), (255, 0, 0), (0, 255, 0)][track_id % 3]
         cv2.circle(play_area_with_players, (int(new_center_x), int(new_center_y)), 5, color, -1)
         cv2.putText(play_area_with_players, f"Player-{track_id}", (int(new_center_x) + 10, int(new_center_y) - 5),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
