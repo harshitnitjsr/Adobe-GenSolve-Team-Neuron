@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# GAMESENSE
 
-## Getting Started
+## Overview
 
-First, run the development server:
+GAMESENSE is an advanced tool designed to track and analyze live Badminton. This system offers a comprehensive suite of features for monitoring and enhancing the gameplay experience through real-time data analysis and automated event detection.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 1. Game Selection
+- **Supported Games:** Badminton . 
+- **Customization:** Choose the game type to initialize specific rules and tracking requirements.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2. Play Area Marking
+- **Precision Marking:** Automatically identify and mark court boundaries, net positions, and critical areas like service lines, fault zones, and out-of-bounds areas using YOLO.
+- **Dynamic Adaptation:** Adjusts to different court sizes and layouts based on the selected game.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### 3.Shuttle Tracking
+- **Advanced Tracking:** Continuously track the location, speed, and trajectory of the shuttlecock or ball during gameplay using YOLO.
+- **Real-Time Analysis:** Provide instant feedback on shot speed, angles, and potential outcomes.
 
-## Learn More
+### 4. Player Tracking
+- **Movement Monitoring:** Track player movements, positioning, and transitions on the court using YOLO and deepSort.
+- **Player Mapping:** Plot the position of player in court map to visualize player activity zones and movement patterns.
 
-To learn more about Next.js, take a look at the following resources:
+### 5. (Bonus) Commentary 
+- **Give Commentary:** Using Gemini API generating Commentary of the Badminton and convert text to voice for audio effect. 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
