@@ -1,8 +1,8 @@
-# Sports Analytics System
+# GAMESENSE
 
 ## Overview
 
-The Sports Analytics System is an advanced tool designed to track and analyze live sports games, including Badminton, Tennis, and Table Tennis. This system offers a comprehensive suite of features for monitoring and enhancing the gameplay experience through real-time data analysis and automated event detection.
+GAMESENSE is an advanced tool designed to track and analyze live Badminton. This system offers a comprehensive suite of features for monitoring and enhancing the gameplay experience through real-time data analysis and automated event detection.
 
 ## Features
 
