@@ -118,7 +118,7 @@ useEffect(() => {
     // let api1= 
     setKey(process.env.NEXT_PUBLIC_GEMINI_KEY!)
     // console.log(key)
-    const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_KEY!);
+    const genAI = new GoogleGenerativeAI("AIzaSyAvguxIaYJqqWNrbtPEEOs7qdTih-5wGio");
     const model = genAI.getGenerativeModel({
       model: "gemini-1.5-flash",
       systemInstruction: "Generate one line commentary not more than one line. Ensure the commentary is engaging, uses sports jargon, and adds a touch of excitement. Output the generated commentary in JSON format {commentary : data} based on my given inputs . . . and generate different type of commentary every time",
