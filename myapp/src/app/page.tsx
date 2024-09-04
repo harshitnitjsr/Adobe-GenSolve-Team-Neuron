@@ -7,6 +7,16 @@ import Testimonial from "@/components/Testimonial";
 import { Spotlight } from "@/components/ui/Spotlight";
 import Whychooseus from "@/components/Whychooseus";
 
+// const {
+//   GoogleGenerativeAI,
+//   HarmCategory,
+//   HarmBlockThreshold,
+// } = require("@google/generative-ai");
+// import  {Google}  from "@/google/generative-ai"
+// import   {GoogleGenerativeAI,
+// HarmCategory,
+// HarmBlockThreshold,
+// }  from "goog"
 export default function Home() {
   return (
     <>
@@ -25,6 +35,7 @@ export default function Home() {
         <Whychooseus />
         <Testimonial />
         <MeetOurInstructors />
+       
       </main>
     </>
   );
