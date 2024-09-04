@@ -22,6 +22,9 @@ GAMESENSE is an advanced tool designed to track and analyze live Badminton. This
 - **Movement Monitoring:** Track player movements, positioning, and transitions on the court using YOLO and deepSort.
 - **Player Mapping:** Plot the position of player in court map to visualize player activity zones and movement patterns.
 
+### 5. (Bonus) Commentary 
+- **Give Commentary:** Using Gemini API generating Commentary of the Badminton and convert text to voice for audio effect. 
+
 
 
 
