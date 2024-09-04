@@ -2,7 +2,22 @@ import cv2
 from ultralytics import YOLO
 from utils.video_processing import load_video, detect_court, get_court_boundaries
 from utils.transformation import get_perspective_transform
-from utils.tracking import initialize_tracker, detect_and_track_players, update_play_area_with_players
+from utils.tracking import initialize_tracker, detect_and_track_players, update_play_area_with_players, detect_and_track_shuttle
+
+class FrameList:
+    def __init__(self, length):
+        self.length = length
+        self.lst = []
+
+    def currlength(self):
+        return len(self.lst)
+
+    def insert(self, item):
+        if len(self.lst) >= self.length:
+            self.lst.pop(0)
+        self.lst.append(item)
+
+frame_list = FrameList(8)
 
 
 def main():
@@ -10,7 +25,7 @@ def main():
     global warped_court
     player_model = YOLO("Models/yolov8n.pt")
     court_model = YOLO('Models/PlayAreaDetect.pt')
-    tracking_model = YOLO("Models/best (12).pt")
+    # tracking_model = YOLO("Models/best (12).pt")
     # Load the video
     video_path = 'TestVideos/Angle1.mp4'
     cap = load_video(video_path)
@@ -18,6 +33,7 @@ def main():
     # Detect court and transform perspective
     ret, frame = cap.read()
     if ret:
+        frame_list.insert(frame)
         points = detect_court(court_model, frame)
         if points is not None:
             court_points = get_court_boundaries(points)
@@ -31,20 +47,31 @@ def main():
     cap = load_video(video_path)
     tracker = initialize_tracker('deep_sort/deep/checkpoint/ckpt.t7')
 
+    w, h = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+    print(w,h)
+
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
             break
 
+        frame_list.insert(frame)
+        print(frame_list.currlength())
+
         actual_frame = frame.copy()
 
-        tracks, bboxes_xyxy,bboxes_xyxy_sc, class_ids = detect_and_track_players(player_model, tracking_model, tracker,
+        tracks, bboxes_xyxy, class_ids = detect_and_track_players(player_model, tracker,
                                                                                  frame, court_points, M,
                                                                                  warped_court)
+        
+        shuttle_pred_dict = detect_and_track_shuttle(frame_list,w,h)
+
         if tracks is not None:
-            play_area_with_players = update_play_area_with_players(bboxes_xyxy, bboxes_xyxy_sc, court_points, warped_court, M, frame)
-            # cv2.imshow("Warped Play Area", play_area_with_players)
-            # cv2.imshow("Original Game", frame)
+            play_area_with_players = update_play_area_with_players(bboxes_xyxy, shuttle_pred_dict,court_points, warped_court, M, frame)
+            cv2.imshow("Warped Play Area", play_area_with_players)
+            cv2.imshow("Original Game", frame)
+
+
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 

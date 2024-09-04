@@ -1,3 +1,4 @@
+TrackNetV3
 main.py
 setup.py
 AdobeGensolve.egg-info/PKG-INFO
@@ -5,6 +6,21 @@ AdobeGensolve.egg-info/SOURCES.txt
 AdobeGensolve.egg-info/dependency_links.txt
 AdobeGensolve.egg-info/requires.txt
 AdobeGensolve.egg-info/top_level.txt
+TrackNetV3/__init__.py
+TrackNetV3/correct_label.py
+TrackNetV3/dataset.py
+TrackNetV3/error_analysis.py
+TrackNetV3/generate_mask_data.py
+TrackNetV3/model.py
+TrackNetV3/predict.py
+TrackNetV3/preprocess.py
+TrackNetV3/tempCodeRunnerFile.py
+TrackNetV3/test.py
+TrackNetV3/train.py
+TrackNetV3/utils/__init__.py
+TrackNetV3/utils/general.py
+TrackNetV3/utils/metric.py
+TrackNetV3/utils/visualize.py
 deep_sort/__init__.py
 deep_sort/deep_sort.py
 deep_sort/deep/__init__.py
