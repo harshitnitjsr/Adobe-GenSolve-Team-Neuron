@@ -15,7 +15,7 @@ import { CardSpotlightDemoScore } from "@/components/MyScore";
 export default function Harshit() {
   const [matchData, setMatchData] = useState<any>(null);
   const [score, setScore] = useState<number | null>(null);
-
+  const [distance, setDistance] = useState<any>(null);
   useEffect(() => {
     const fetchMatchData = async () => {
       try {
@@ -38,10 +38,20 @@ export default function Harshit() {
         console.error("Error fetching the live score:", error);
       }
     };
-
+    const fetchDistance = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/get_player_stats"
+        );
+        setDistance(response.data);
+        console.log(response);
+      } catch (error) {
+        console.error("Error fetching the live score:", error);
+      }
+    };
     fetchMatchData();
     fetchScore();
-
+    fetchDistance();
     // Fetch data every 5 seconds
     const interval = setInterval(() => {
       fetchMatchData();
@@ -84,8 +94,8 @@ export default function Harshit() {
 
                   <CardItem translateZ="100" className="w-full mt-4">
                     <CardSpotlightDemoScore
-                      player1={matchData?.liveScore["Player 1"]}
-                      player2={matchData?.liveScore["Player 2"]}
+                      player1={distance?.player1}
+                      player2={distance?.player2}
                     />
                   </CardItem>
                 </CardBody>
