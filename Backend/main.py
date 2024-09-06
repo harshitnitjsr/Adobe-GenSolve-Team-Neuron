@@ -40,6 +40,7 @@ def main():
             warped_court, M = get_perspective_transform(court_points, frame)
             # Use a fixed image instead of the detected one (for demonstration)
             court = cv2.imread("TestVideos/Screenshot_20240901_031623.png")
+            print(warped_court.shape[1], warped_court.shape[0])
             warped_court = cv2.resize(court, (warped_court.shape[1], warped_court.shape[0]))  # Fixing resize dimensions
     cap.release()
 
@@ -48,7 +49,7 @@ def main():
     tracker = initialize_tracker('deep_sort/deep/checkpoint/ckpt.t7')
 
     w, h = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
-    print(w,h)
+    # print(w,h)
 
     while cap.isOpened():
         ret, frame = cap.read()
@@ -67,7 +68,7 @@ def main():
         shuttle_pred_dict = detect_and_track_shuttle(frame_list,w,h)
 
         if tracks is not None:
-            play_area_with_players = update_play_area_with_players(bboxes_xyxy, shuttle_pred_dict,court_points, warped_court, M, frame)
+            play_area_with_players, player_coords = update_play_area_with_players(bboxes_xyxy, shuttle_pred_dict,court_points, warped_court, M, frame)
             cv2.imshow("Warped Play Area", play_area_with_players)
             cv2.imshow("Original Game", frame)
 
@@ -84,7 +85,7 @@ def main():
         ret, buffer2 = cv2.imencode('.jpg', play_area_with_players)
         play_area_with_players_bytes = buffer2.tobytes()
 
-        yield [actual_frame_bytes, frame_bytes, play_area_with_players_bytes]
+        yield [actual_frame_bytes, frame_bytes, play_area_with_players_bytes, player_coords]
 
     cap.release()
 
