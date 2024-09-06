@@ -12,6 +12,8 @@ node_modules
 
 *.mp4
 
-
+__pycache__/
+__pycache__
+./__pycache__/
 *.pt
 
