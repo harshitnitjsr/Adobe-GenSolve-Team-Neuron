@@ -61,6 +61,7 @@ def detect_and_track_players(player_model, tracker, frame, court_points, M, warp
 def update_play_area_with_players(bboxes_xyxy, shuttle_pred_dict, court_points, warped_court, M, frame):
     play_area_with_players = warped_court.copy()
     track_id = 0
+    player_coords = [(), ()]
     for bbox in bboxes_xyxy:
         if track_id >= 2:
             break
@@ -82,6 +83,8 @@ def update_play_area_with_players(bboxes_xyxy, shuttle_pred_dict, court_points, 
         else:
             color = (255, 0, 0)
 
+        player_coords[track_id-1] = (new_center_x, new_center_y)
+
         # color = [(0, 0, 255), (255, 0, 0), (0, 255, 0)][track_id % 3]
         cv2.circle(play_area_with_players, (int(new_center_x), int(new_center_y)), 5, color, -1)
         cv2.putText(play_area_with_players, f"Player-{track_id}", (int(new_center_x) + 10, int(new_center_y) - 5),
@@ -96,6 +99,6 @@ def update_play_area_with_players(bboxes_xyxy, shuttle_pred_dict, court_points, 
     if len(shuttle_pred_dict)>0:
         for i in range(7,4,-1):
             cv2.circle(frame, (shuttle_pred_dict['X'][i], shuttle_pred_dict['Y'][i]),5,(255,120,255),-1)
+    # print(player_coords)
 
-
-    return play_area_with_players
+    return (play_area_with_players, player_coords)
