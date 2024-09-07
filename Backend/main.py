@@ -27,7 +27,7 @@ def main():
     court_model = YOLO('Models/PlayAreaDetect.pt')
     # tracking_model = YOLO("Models/best (12).pt")
     # Load the video
-    video_path = 'TestVideos/Angle1.mp4'
+    video_path = 'TestVideos/Angle1 (online-video-cutter.com).mp4'
     cap = load_video(video_path)
 
     # Detect court and transform perspective
@@ -47,6 +47,7 @@ def main():
     # Re-open video for tracking
     cap = load_video(video_path)
     tracker = initialize_tracker('deep_sort/deep/checkpoint/ckpt.t7')
+    frame_no = 0
 
     w, h = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
     # print(w,h)
@@ -55,7 +56,7 @@ def main():
         ret, frame = cap.read()
         if not ret:
             break
-
+        frame_no += 1
         frame_list.insert(frame)
         print(frame_list.currlength())
 
@@ -63,12 +64,12 @@ def main():
 
         tracks, bboxes_xyxy, class_ids = detect_and_track_players(player_model, tracker,
                                                                                  frame, court_points, M,
-                                                                                 warped_court)
+                                                                                 warped_court, frame_no)
         
         shuttle_pred_dict = detect_and_track_shuttle(frame_list,w,h)
 
         if tracks is not None:
-            play_area_with_players, player_coords = update_play_area_with_players(bboxes_xyxy, shuttle_pred_dict,court_points, warped_court, M, frame)
+            play_area_with_players, player_coords, status = update_play_area_with_players(bboxes_xyxy, shuttle_pred_dict,court_points, warped_court, M, frame, frame_no)
             cv2.imshow("Warped Play Area", play_area_with_players)
             cv2.imshow("Original Game", frame)
 
@@ -85,7 +86,7 @@ def main():
         ret, buffer2 = cv2.imencode('.jpg', play_area_with_players)
         play_area_with_players_bytes = buffer2.tobytes()
 
-        yield [actual_frame_bytes, frame_bytes, play_area_with_players_bytes, player_coords]
+        yield [actual_frame_bytes, frame_bytes, play_area_with_players_bytes, player_coords, status]
 
     cap.release()
 

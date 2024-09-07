@@ -2,9 +2,10 @@ import numpy as np
 import cv2
 from deep_sort.deep_sort import DeepSort
 from utils.transformation import perspective_transform_point
-from utils.geometry import is_inside_quadrilateral
+from utils.geometry import is_inside_quadrilateral, find_angle, find_distance
 from TrackNetV3.predict import get_shuttle_pos
 
+prev1, prev2, status, hit_frame = None, None, None, 0
 
 def initialize_tracker(deep_sort_weights):
     return DeepSort(model_path=deep_sort_weights, max_age=1000)
@@ -14,7 +15,7 @@ def detect_and_track_shuttle(frame_list,w,h):
     return get_shuttle_pos(frame_list,w,h)
 
 
-def detect_and_track_players(player_model, tracker, frame, court_points, M, warped_court):
+def detect_and_track_players(player_model, tracker, frame, court_points, M, warped_court, frame_no):
     # Detect players using player_model
     player_results = player_model(frame, conf=0.5, verbose=False)
     # Detect shuttlecock using tracking_model
@@ -58,16 +59,21 @@ def detect_and_track_players(player_model, tracker, frame, court_points, M, warp
     return None, None, None
 
 
-def update_play_area_with_players(bboxes_xyxy, shuttle_pred_dict, court_points, warped_court, M, frame):
+def update_play_area_with_players(bboxes_xyxy, shuttle_pred_dict, court_points, warped_court, M, frame, frame_no):
+    global prev1, prev2, status, hit_frame
     play_area_with_players = warped_court.copy()
     track_id = 0
     player_coords = [(), ()]
+    player_act_coords = [(), ()]
     for bbox in bboxes_xyxy:
         if track_id >= 2:
             break
         x1, y1, x2, y2 = map(int, bbox)
         center_x = (x1 + x2) / 2
         center_y = max(y1, y2)
+        act_center_y = (y1+y2)/2
+
+        player_act_coords[track_id-1] = (center_x, act_center_y)
 
         if not is_inside_quadrilateral(court_points, center_x, center_y):
             continue
@@ -97,8 +103,28 @@ def update_play_area_with_players(bboxes_xyxy, shuttle_pred_dict, court_points, 
 
     # print(bboxes_xyxy_sc)
     if len(shuttle_pred_dict)>0:
-        for i in range(7,4,-1):
-            cv2.circle(frame, (shuttle_pred_dict['X'][i], shuttle_pred_dict['Y'][i]),5,(255,120,255),-1)
+        colour = (255,0,0)
+        angle = 0
+
+        if (prev1 is not None and prev2 is not None):
+            angle = find_angle([shuttle_pred_dict['X'][-1], shuttle_pred_dict['Y'][-1]], prev1, prev2)
+
+        if (prev1!= [shuttle_pred_dict['X'][-1], shuttle_pred_dict['Y'][-1]] and shuttle_pred_dict['X'][-1]!=0):
+            prev2 = prev1
+            prev1 = [shuttle_pred_dict['X'][-1], shuttle_pred_dict['Y'][-1]]
+
+        if angle>90 and prev1 is not None and prev1[1]>250:
+            colour = (0, 255, 0)
+            if (status is None):
+                hit_frame = frame_no
+                status = "Hit"
+            elif (status == "Hit" and frame_no - hit_frame >=2):
+                status = None
+
+        for i in range(7,6,-1):
+            # cv2.line(frame, (20,250), (200,250), (255,0,0),2,1)
+            # cv2.putText(frame, f"{8-i}", (shuttle_pred_dict['X'][i], shuttle_pred_dict['Y'][i]), 1,1,(0,0,0),2)
+            cv2.circle(frame, (shuttle_pred_dict['X'][i], shuttle_pred_dict['Y'][i]),5,colour,-1)
     # print(player_coords)
 
-    return (play_area_with_players, player_coords)
+    return (play_area_with_players, player_coords, status)

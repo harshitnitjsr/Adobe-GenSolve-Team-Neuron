@@ -12,6 +12,7 @@ CORS(app)
 prev_coords = [(),()]
 dis_p1 = 0
 dis_p2 = 0
+status = ""
 
 distance_player = {
     "player1": dis_p1,
@@ -37,7 +38,13 @@ match_data = {
         {"player": "Player 1", "score": 15, "distance": 7.5, "speed": 65},
         {"player": "Player 2", "score": 12, "distance": 8.2, "speed": 62}
     ],
-    "liveScore": {"Player 1": 10, "Player 2": 7}
+    "liveScore": {"Player 1": 10, "Player 2": 7}, 
+    "playerdistance":{
+            "player1": dis_p1,
+            "player2": dis_p2
+        },
+    "Status":""
+
 }
 
 def tracking_shuttle_cock():
@@ -45,22 +52,17 @@ def tracking_shuttle_cock():
         actual_frame_bytes, frame_bytes, play_area_with_players_bytes = frames
         yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + actual_frame_bytes + b'\r\n')
 
-def update_match_data_from_frame(frame):
-    global match_data
+def update_match_data_from_frame():
+    global match_data, status
 
     # Process the frame with YOLO model (assuming some model processing here)
     # Simulating match data update based on detection results
-    shot_data = {
-        "player": random.choice(["Player 1", "Player 2"]),
-        "score": random.randint(0, 21),
-        "distance": round(random.uniform(5.0, 10.0), 2),
-        "speed": random.randint(50, 70)
-    }
-    
 
-    # Update match data
-    match_data['scoreArray'].append(shot_data)
-    match_data['liveScore'][shot_data['player']] += 1
+    if (status is None):
+        match_data["Status"]=""
+    else:
+        match_data["Status"] = status
+    print(match_data)
 
 def get_player_data():
     for frames in main():
@@ -73,10 +75,11 @@ def get_player_data():
         yield(dis)
 
 def generate_yolo_frames():
-    global prev_coords
+    global prev_coords, status
     for frames in main():
-        actual_frame_bytes, frame_bytes, play_area_with_players_bytes, player_coords = frames
+        actual_frame_bytes, frame_bytes, play_area_with_players_bytes, player_coords, status = frames
         # print("Check1")
+        update_match_data_from_frame()
         h,w = 720,544
         h_scaler, w_scaler = 13.4/h, 5.18/w
         calculate_distance(prev_coords,player_coords, h_scaler, w_scaler)
@@ -84,9 +87,12 @@ def generate_yolo_frames():
         yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
 
 def generate_actual_frames():
+    global prev_coords, status
     for frames in main():
-        actual_frame_bytes, frame_bytes, play_area_with_players_bytes, player_coords = frames
+        actual_frame_bytes, frame_bytes, play_area_with_players_bytes, player_coords, status = frames
         h,w = 720,544
+        update_match_data_from_frame()
+        print(match_data)
         h_scaler, w_scaler = 13.4/h, 5.18/w
         calculate_distance(prev_coords,player_coords, h_scaler, w_scaler)
         prev_coords = player_coords
@@ -94,7 +100,7 @@ def generate_actual_frames():
 
 def generate_map_frames():
     for frames in main():
-        actual_frame_bytes, frame_bytes, play_area_with_players_bytes, player_coords = frames
+        actual_frame_bytes, frame_bytes, play_area_with_players_bytes, player_coords, status = frames
         yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + play_area_with_players_bytes + b'\r\n')
 
 

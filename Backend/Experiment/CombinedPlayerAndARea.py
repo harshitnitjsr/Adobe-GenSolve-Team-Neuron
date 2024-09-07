@@ -84,6 +84,7 @@ while True:
         for pts in points:
             ymax = max(ymax, pts[1])
             ymin = min(ymin, pts[1])
+            print("Ymin: ", ymin)
 
         for pts in points:
             if ymax - 2 <= pts[1] <= ymax + 2:
