@@ -1,4 +1,5 @@
 from flask import Flask, Response, jsonify
+from flask_socketio import SocketIO, emit
 from ultralytics import YOLO
 from flask_cors import CORS
 import random
@@ -8,6 +9,7 @@ import cv2
 
 app = Flask(__name__)
 CORS(app)
+socketio = SocketIO(app, cors_allowed_origins="*")  # Enable Socket.IO
 
 prev_coords = [(),()]
 dis_p1 = 0
@@ -100,18 +102,11 @@ def update_match_data_from_frame(act_hit_count):
             "distance":calculate_shuttle_distance(prev_hit_coords[int(hitplayer[-1])-1],shuttle_curr_coords, h_scaler, w_scaler),
             "speed":match_data["scoreArray"][hitplayer][-1]["distance"] / (frame_no - prev_hit_frame)*30}
             )
+        match_data["liveScore"][hitplayer] = match_data["scoreArray"][hitplayer][-1]["score"]
+    # if(status=="Hit" or status=="Miss"):
+    socketio.emit('update_match_data', match_data)
 
 
-def get_player_data():
-    global h_scaler, w_scaler
-    for frames in main():
-        v1,v2,play_area, player_coords = frames
-        h,w = play_area.shape[:2]
-        h_scaler, w_scaler = 13.4/h, 5.18/w
-        dis = calculate_distance(prev_coords,player_coords, h_scaler, w_scaler)
-        prev_coords = player_coords
-        # print(dis)
-        yield(dis)
 
 def generate_yolo_frames():
     global prev_coords, status, h_scaler, w_scaler, frame_no, prev_hit_frame, hitplayer, hit_shuttle_coords, hit_coords,shuttle_curr_coords, prev_hit_coords
@@ -172,6 +167,8 @@ def yolo_video_feed():
 def actual_video_feed():
     return Response(generate_actual_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-
+@socketio.on('connect')
+def handle_connect():
+    emit('connected', {'message': 'Connected to the server!'})
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+     socketio.run(app, debug=True, host='0.0.0.0', port=5000)

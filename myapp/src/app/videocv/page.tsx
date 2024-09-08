@@ -6,10 +6,10 @@ import axios from "axios";
 import Link from "next/link";
 import { CardBody, CardContainer, CardItem } from "../../components/ui/3d-card";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
-import { Spotlight } from "@/components/ui/Spotlight";
+// import { Spotlight } from "@/components/ui/Spotlight";
 import { TypewriterEffectSmoothDemo } from "@/components/Name";
 import { LampDemo } from "@/components/MyLamp";
-import { CardSpotlight } from "@/components/ui/card-spotlight";
+// import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { CardSpotlightDemo } from "@/components/MySpecialCard";
 import { CardSpotlightDemoScore } from "@/components/MyScore";
 import { TextToSpeech } from "@/components/Audio";
@@ -17,6 +17,7 @@ import { TextToSpeech } from "@/components/Audio";
 // import { run } from "@/helpers/gemini";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { WobbleCardDemo } from "@/components/Commentary";
+import socket from "@/utils/socket";
 
 export default function Harshit() {
   const [matchData, setMatchData] = useState<any>(null);
@@ -25,25 +26,17 @@ export default function Harshit() {
   const [distance, setDistance] = useState<any>(null);
   const [key, setKey] = useState<any>("hello");
   const hasFetchedData = useRef(false); // Track if data has been fetched
+  const [hitby, setHitby] = useState<any>(null);
   useEffect(() => {
-    const fetchMatchData = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:5000/get_match_data"
-        );
-        console.log(response);
-        setMatchData(response.data);
-      } catch (error) {
-        console.error("Error fetching the match data:", error);
-      }
+    socket.on("update_match_data", (data) => {
+      setMatchData(data);
+      setHitby(data.HitPlayer);
+    });
+
+    // Cleanup on unmount
+    return () => {
+      socket.off("update_match_data");
     };
-    fetchMatchData();
-
-    const interval = setInterval(() => {
-      fetchMatchData();
-    }, 2000);
-
-    return () => clearInterval(interval);
   }, []);
   //   const genAI = new GoogleGenerativeAI({
   //     apiKey: "AIzaSyDTJ-vtVfU7us69uv1wqz_scHHfmhoPuJU",
@@ -110,13 +103,25 @@ export default function Harshit() {
       const model = genAI.getGenerativeModel({
         model: "gemini-1.5-flash",
         systemInstruction:
-          "Generate one line commentary not more than one line. Ensure the commentary is engaging, uses sports jargon, and adds a touch of excitement. Output the generated commentary in JSON format {commentary : data} based on my given inputs . . . and generate different type of commentary every time",
+          "Generate 15 word commentary not more than 15 words. Ensure the commentary is engaging, uses sports jargon, and adds a touch of excitement. Output the generated commentary in JSON format {commentary : data} based on my given inputs . . . and generate different type of commentary every time and use my given numerical datas too. ",
         generationConfig: { responseMimeType: "application/json" },
       });
+      const lastElementPlayer1 =
+        matchData?.scoreArray["Player 1"][
+          matchData?.scoreArray["Player 1"].length - 1
+        ];
+      const lastElementPlayer2 =
+        matchData?.scoreArray["Player 2"][
+          matchData?.scoreArray["Player 2"].length - 1
+        ];
+      let prompt: string = `Player 1 score is ${lastElementPlayer1?.score} and player 2 score is ${lastElementPlayer2?.score}`;
+      if (matchData?.HitPlayer == "Player 1") {
+        prompt = `Player 1 hit with the speed of  ${lastElementPlayer1?.speed} at a distance of ${lastElementPlayer1?.distance} and player 1 score is ${lastElementPlayer1?.score} and player 2 score is ${lastElementPlayer2?.score} `;
+      }
 
-      const prompt =
-        "player 1 shots with the speed of 32km/hrs with the distance of 12m and score of player is now 3 and player 2 is 4";
-
+      if (matchData?.HitPlayer == "Player 2") {
+        prompt = `Player 1 hit with the speed of  ${lastElementPlayer2?.speed} at a distance of ${lastElementPlayer2?.distance} and player 1 score is ${lastElementPlayer2?.score} and player 2 score is ${lastElementPlayer1?.score} `;
+      }
       const result = await model.generateContent(prompt);
       const jsonObject = JSON.parse(result.response.text());
 
@@ -124,12 +129,8 @@ export default function Harshit() {
       console.log(jsonObject.commentary);
     };
 
-    // Run fetchData only if it hasn't been run before
-    if (!hasFetchedData.current) {
-      fetchData();
-      hasFetchedData.current = true;
-    }
-  }, []);
+    fetchData();
+  }, [hitby]);
 
   return (
     <>

@@ -11,6 +11,7 @@ import { TypewriterEffectSmoothDemo } from "@/components/Name";
 import { LampDemo } from "@/components/MyLamp";
 import { CardSpotlightDemo } from "@/components/MySpecialCard";
 import { CardSpotlightDemoScore } from "@/components/MyScore";
+import socket from "@/utils/socket";
 const data = {
   HitPlayer: "Player 2",
   Status: "",
@@ -60,26 +61,15 @@ export default function Harshit() {
   const [score, setScore] = useState<number | null>(null);
   const [distance, setDistance] = useState<any>(null);
   useEffect(() => {
-    const fetchMatchData = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:5000/get_match_data"
-        );
-        // console.log(response);
-        setMatchData(response.data);
-      } catch (error) {
-        console.error("Error fetching the match data:", error);
-      }
+    socket.on("update_match_data", (data) => {
+      setMatchData(data);
+    });
+
+    // Cleanup on unmount
+    return () => {
+      socket.off("update_match_data");
     };
-    fetchMatchData();
-
-    const interval = setInterval(() => {
-      fetchMatchData();
-    }, 2000);
-
-    return () => clearInterval(interval);
   }, []);
-
   return (
     <>
       <div className="min-h-screen bg-slate-950 py-12 pt-36">

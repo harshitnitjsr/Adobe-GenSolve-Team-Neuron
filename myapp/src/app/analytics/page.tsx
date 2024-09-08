@@ -23,7 +23,7 @@ export default function ScoreAnalytics() {
 
     const interval = setInterval(() => {
       fetchMatchData();
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
