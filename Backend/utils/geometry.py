@@ -17,6 +17,20 @@ def find_distance(x1, y1, x2, y2):
     distance = np.sqrt((x2 - x1)**2 + (y2 - y1)**2)
     return distance
 
+
+def distance_player_shuttle(player, shuttle):
+    print(player, shuttle)
+    if player != () and shuttle != []:
+
+        return np.sqrt((player[0]-shuttle[0])**2 + (player[1]-shuttle[1])**2)
+    return np.inf
+
+def distance_shuttle(pt1, pt2):
+    try:
+        return np.sqrt((pt1[0]-pt2[0])**2 + (pt1[1]-pt2[1])**2)
+    except:
+        return np.inf
+
 def find_angle(currpoints, prev1, prev2):
     x1, x2, x3 = (currpoints[0], prev1[0], prev2[0])
     y1, y2, y3 = (currpoints[1], prev1[1], prev2[1])

@@ -55,11 +55,23 @@ def predict(indices, y_pred=None, c_pred=None, img_scaler=(1, 1)):
     
     return pred_dict    
 
+def prefetch_loader(loader):
+    stream = torch.cuda.Stream()
+    first = True
+    for i,x in loader:
+        with torch.cuda.stream(stream):
+            x = x.float().cuda()
+        if not first:
+            yield prefetch_batch
+        prefetch_batch = x
+        first = False
+    yield prefetch_batch
+
 def get_shuttle_pos(frame_list,w,h):
     num_workers = 0
     tracknet_file = r'D:\projects\Adobe-GenSolve-Team-Neuron\Backend\TrackNetV3\ckpts\TrackNet_best.pt'
     eval_mode = 'nonoverlap'
-    batch_size = 32
+    batch_size = 128
     max_sample_num = 8
     
     # Load model
@@ -103,7 +115,7 @@ def get_shuttle_pos(frame_list,w,h):
             # print("Check3")
             # print(data_loader.data)
             # print(data_loader.dataset.__dict__)
-            for i,x in tqdm(data_loader):
+            for x in prefetch_loader(data_loader):
                 # print(i)
                 # print(x.shape)
                 # print(len(myx))
