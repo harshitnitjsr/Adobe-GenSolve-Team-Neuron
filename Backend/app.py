@@ -149,14 +149,14 @@ def get_match_data():
     return jsonify(match_data)
 
 
-@app.route('/distance_covered_by_each_player', methods=['GET'])
-def distance_covered_by_each_player():
-    return jsonify(match_data)
+# @app.route('/distance_covered_by_each_player', methods=['GET'])
+# def distance_covered_by_each_player():
+#     return jsonify(match_data)
 
 
-@app.route('/get_player_stats', methods=['GET'])
-def get_player_stats():
-    return jsonify(distance_player)
+# @app.route('/get_player_stats', methods=['GET'])
+# def get_player_stats():
+#     return jsonify(distance_player)
 
 @app.route('/match_map_feed')
 def match_map_feed():

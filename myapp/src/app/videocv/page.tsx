@@ -31,44 +31,17 @@ export default function Harshit() {
         const response = await axios.get(
           "http://localhost:5000/get_match_data"
         );
+        console.log(response);
         setMatchData(response.data);
       } catch (error) {
         console.error("Error fetching the match data:", error);
       }
     };
-
-    const fetchScore = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:5000/generating_live_score"
-        );
-        setScore(response.data.score);
-      } catch (error) {
-        console.error("Error fetching the live score:", error);
-      }
-    };
-
-    const fetchDistance = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:5000/get_player_stats"
-        );
-        setDistance(response.data);
-        console.log(response);
-      } catch (error) {
-        console.error("Error fetching the live score:", error);
-      }
-    };
-
     fetchMatchData();
-    fetchScore();
-    fetchDistance();
-    // Fetch data every 5 seconds
+
     const interval = setInterval(() => {
       fetchMatchData();
-      // fetchScore();
-      fetchDistance();
-    }, 1000);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, []);
@@ -171,8 +144,18 @@ export default function Harshit() {
                 <h1 className="text-lg md:text-4xl text-center font-sans font-bold mb-8 text-red-300">
                   {"Status"}
                 </h1>
-                <h1 className="text-lg md:text-5xl text-center font-sans font-bold mb-8 text-white">
-                  {"HIT"}
+                {matchData && matchData?.Status ? (
+                  <h1 className="text-lg md:text-5xl text-center  font-sans font-bold mb-8 text-white">
+                    {matchData?.Status}
+                  </h1>
+                ) : (
+                  <h1 className="text-lg md:text-5xl text-center  font-sans font-bold mb-8 text-white">
+                    {"No hit yet"}
+                  </h1>
+                )}
+
+                <h1 className="text-lg md:text-5xl text-center  font-sans font-bold mb-8 text-white">
+                  {matchData?.HitPlayer}
                 </h1>
               </BackgroundGradient>
               <CardContainer key={1} className="inter-var m-4">
@@ -192,8 +175,8 @@ export default function Harshit() {
                   </CardItem>
                   <CardItem translateZ="100" className="w-full mt-4">
                     <CardSpotlightDemoScore
-                      player1={distance?.player1}
-                      player2={distance?.player2}
+                      player1={matchData?.playerdistance["Player 1"]}
+                      player2={matchData?.playerdistance["Player 2"]}
                     />
                   </CardItem>
                 </CardBody>
@@ -223,21 +206,69 @@ export default function Harshit() {
             {matchData && (
               <>
                 <div className="flex flex-wrap justify-center gap-7 mt-8">
-                  {matchData?.scoreArray
-                    ?.slice(-8)
-                    .map((shot: any, index: any) => (
-                      <BackgroundGradient
-                        key={index}
-                        className="rounded-[22px]"
-                      >
-                        <CardSpotlightDemo
-                          shot_number={index}
-                          prop={shot.distance}
-                          speed={shot.speed}
-                          player={shot.player}
-                        />
-                      </BackgroundGradient>
-                    ))}
+                  <br />
+                  {matchData && (
+                    <>
+                      {" "}
+                      <h1 className="text-lg md:text-5xl text-center  font-sans font-bold mb-8 text-white">
+                        {"Player 1"}
+                      </h1>
+                      <div className="flex flex-wrap justify-center gap-7 mt-8">
+                        {/* <h1 className="text-lg md:text-xl  font-sans font-bold mb-8 text-red-600">
+                    Last 6 shots details
+                  </h1> */}
+
+                        <br />
+                        {matchData?.scoreArray["Player 1"]
+                          ?.slice(-4)
+                          .map((shot: any, index: any) => (
+                            <BackgroundGradient
+                              key={index}
+                              className="rounded-[22px]"
+                            >
+                              <CardSpotlightDemo
+                                shot_number={index}
+                                prop={shot.distance}
+                                speed={shot.speed}
+                                player={shot.score}
+                              />
+                            </BackgroundGradient>
+                          ))}
+
+                        <br />
+                      </div>
+                      <br />
+                      <br />
+                      <br />
+                      <h1 className="text-lg md:text-5xl text-center  font-sans font-bold mb-8 text-white">
+                        {"Player 2"}
+                      </h1>
+                      <div className="flex flex-wrap justify-center gap-7 mt-8">
+                        {/* <h1 className="text-lg md:text-xl  font-sans font-bold mb-8 text-red-600">
+                    Last 6 shots details
+                  </h1> */}
+
+                        <br />
+                        {matchData?.scoreArray["Player 2"]
+                          ?.slice(-4)
+                          .map((shot: any, index: any) => (
+                            <BackgroundGradient
+                              key={index}
+                              className="rounded-[22px]"
+                            >
+                              <CardSpotlightDemo
+                                shot_number={index}
+                                prop={shot.distance}
+                                speed={shot.speed}
+                                player={shot.score}
+                              />
+                            </BackgroundGradient>
+                          ))}
+
+                        <br />
+                      </div>
+                    </>
+                  )}
                 </div>
               </>
             )}
