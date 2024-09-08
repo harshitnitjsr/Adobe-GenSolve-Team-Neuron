@@ -165,14 +165,14 @@ export default function Harshit() {
                     translateZ="50"
                     className="text-xl font-bold text-neutral-600 dark:text-white"
                   >
-                    {"Live Score"}
+                    {"Live Distance"}
                   </CardItem>
                   <CardItem
                     as="p"
                     translateZ="60"
                     className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
                   >
-                    {"Find Live Score of Badminton"}
+                    {"Find Distance Covered by each Player Here"}
                   </CardItem>
                   <CardItem translateZ="100" className="w-full mt-4">
                     <CardSpotlightDemoScore
@@ -202,6 +202,32 @@ export default function Harshit() {
                   className="border border-gray-200 rounded-lg"
                   style={{ height: "682px", width: "543px" }}
                 />
+              </div>
+              <div className="relative z-1 flex flex-wrap justify-center m-10">
+                <CardContainer key={1} className="inter-var m-4">
+                  <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
+                    <CardItem
+                      translateZ="50"
+                      className="text-xl font-bold text-neutral-600 dark:text-white"
+                    >
+                      {"Live Score"}
+                    </CardItem>
+                    <CardItem
+                      as="p"
+                      translateZ="60"
+                      className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+                    >
+                      {"Find Live Score Here"}
+                    </CardItem>
+
+                    <CardItem translateZ="100" className="w-full mt-4">
+                      <CardSpotlightDemoScore
+                        player1={matchData?.liveScore["Player 1"]}
+                        player2={matchData?.liveScore["Player 2"]}
+                      />
+                    </CardItem>
+                  </CardBody>
+                </CardContainer>
               </div>
             </div>
             {matchData && (
