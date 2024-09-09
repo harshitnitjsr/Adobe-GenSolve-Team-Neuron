@@ -103,7 +103,7 @@ export default function Harshit() {
       const model = genAI.getGenerativeModel({
         model: "gemini-1.5-flash",
         systemInstruction:
-          "Generate 15 word commentary not more than 15 words. Ensure the commentary is engaging, uses sports jargon, and adds a touch of excitement. Output the generated commentary in JSON format {commentary : data} based on my given inputs . . . and generate different type of commentary every time and use my given numerical datas too. ",
+          "Generate 10 word commentary not more than 10 words. Ensure the commentary is engaging, uses sports jargon, and adds a touch of excitement. Output the generated commentary in JSON format {commentary : data} based on my given inputs . . . and generate different type of commentary every time and use my given numerical datas too. ",
         generationConfig: { responseMimeType: "application/json" },
       });
       const lastElementPlayer1 =
@@ -120,13 +120,13 @@ export default function Harshit() {
       }
 
       if (matchData?.HitPlayer == "Player 2") {
-        prompt = `Player 1 hit with the speed of  ${lastElementPlayer2?.speed} at a distance of ${lastElementPlayer2?.distance} and player 1 score is ${lastElementPlayer2?.score} and player 2 score is ${lastElementPlayer1?.score} `;
+        prompt = `Player 2 hit with the speed of  ${lastElementPlayer2?.speed} at a distance of ${lastElementPlayer2?.distance} and player 2 score is ${lastElementPlayer2?.score} and player 1 score is ${lastElementPlayer1?.score} `;
       }
       const result = await model.generateContent(prompt);
       const jsonObject = JSON.parse(result.response.text());
 
       setApidata(jsonObject.commentary);
-      console.log(jsonObject.commentary);
+      // console.log(jsonObject.commentary);
     };
 
     fetchData();
