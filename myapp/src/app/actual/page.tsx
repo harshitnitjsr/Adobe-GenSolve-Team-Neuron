@@ -81,15 +81,6 @@ export default function Harshit() {
                 <h1 className="text-lg md:text-4xl text-center font-sans font-bold mb-8 text-red-300">
                   {"Status"}
                 </h1>
-                {matchData && matchData?.Status ? (
-                  <h1 className="text-lg md:text-5xl text-center  font-sans font-bold mb-8 text-white">
-                    {matchData?.Status}
-                  </h1>
-                ) : (
-                  <h1 className="text-lg md:text-5xl text-center  font-sans font-bold mb-8 text-white">
-                    {"No hit yet"}
-                  </h1>
-                )}
 
                 <h1 className="text-lg md:text-5xl text-center  font-sans font-bold mb-8 text-white">
                   {matchData?.HitPlayer}
