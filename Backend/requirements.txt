@@ -1,4 +1,9 @@
-
+ultralytics
+opencv-python-headless
+numpy
+flask
+flask_cors
+Flask-SocketIO
 
 
 
