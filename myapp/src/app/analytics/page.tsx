@@ -28,7 +28,7 @@ export default function ScoreAnalytics() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="p-6 bg-slate-950 min-h-screen mt">
+    <div className="p-6 bg-slate-950 min-h-[100rem] mt">
       <div style={{ marginTop: "132px" }}>
         <h1 className="text-3xl font-bold text-center bg-slate-950 mb-6">
           Badminton Match Analysis
