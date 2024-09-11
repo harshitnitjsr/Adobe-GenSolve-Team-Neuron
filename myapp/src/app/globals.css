@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 /* Hide scrollbar in Internet Explorer and Edge */
+html {
+  zoom: 80%;
+}
 body {
   -ms-overflow-style: none;
 }
