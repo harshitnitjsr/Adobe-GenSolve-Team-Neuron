@@ -19,7 +19,6 @@ GAMESENSE is an advanced sports tracking system designed to provide real-time da
   - [Real-Time Commentary (Bonus)](#8-real-time-commentary-bonus)
   - [Real-Time Graph Analysis](#9-real-time-graph-analysis)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Technologies Used](#technologies-used)
 
 
