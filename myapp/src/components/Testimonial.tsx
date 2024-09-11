@@ -4,172 +4,174 @@ import { InfiniteMovingCards } from "./ui/infinite-moving-cards";
 const musictestimonial = [
   {
     quote:
-      "Success is not final, failure is not fatal: It is the courage to continue that counts.",
-    name: "Winston Churchill",
-    title: "Former Prime Minister of the United Kingdom",
-  },
-  {
-    quote: "The only way to do great work is to love what you do.",
-    name: "Steve Jobs",
-    title: "Co-founder of Apple Inc.",
+      "The shuttlecock doesn’t fly itself; it's the dedication and persistence that propel it.",
+    name: "P. Gopichand",
+    title: "Chief National Coach of the Indian Badminton Team",
   },
   {
     quote:
-      "In the end, it's not the years in your life that count. It's the life in your years.",
-    name: "Abraham Lincoln",
-    title: "16th President of the United States",
-  },
-  {
-    quote: "You miss 100% of the shots you don't take.",
-    name: "Wayne Gretzky",
-    title: "Professional Hockey Player",
-  },
-  {
-    quote: "Believe you can and you're halfway there.",
-    name: "Theodore Roosevelt",
-    title: "26th President of the United States",
-  },
-  {
-    quote: "It always seems impossible until it's done.",
-    name: "Nelson Mandela",
-    title: "Former President of South Africa",
-  },
-  {
-    quote: "Stay hungry, stay foolish.",
-    name: "Steve Jobs",
-    title: "Co-founder of Apple Inc.",
+      "A champion is defined not by their victories, but by how they can recover when they fall.",
+    name: "Carolina Marin",
+    title: "Olympic Gold Medalist, Badminton",
   },
   {
     quote:
-      "The only limit to our realization of tomorrow will be our doubts of today.",
-    name: "Franklin D. Roosevelt",
-    title: "32nd President of the United States",
-  },
-  {
-    quote: "Life is what happens when you're busy making other plans.",
-    name: "John Lennon",
-    title: "Singer-songwriter",
+      "Badminton is not just about power; it's about skill, strategy, and endurance.",
+    name: "Lin Dan",
+    title: "Two-time Olympic Badminton Champion",
   },
   {
     quote:
-      "The best time to plant a tree was 20 years ago. The second best time is now.",
-    name: "Chinese Proverb",
-    title: "Unknown",
+      "In badminton, every shuttle counts. Every moment on court is an opportunity to outthink your opponent.",
+    name: "Viktor Axelsen",
+    title: "World Champion, Badminton",
   },
   {
     quote:
-      "The future belongs to those who believe in the beauty of their dreams.",
-    name: "Eleanor Roosevelt",
-    title: "Former First Lady of the United States",
+      "You miss 100% of the smashes you don’t take, so take every chance you get.",
+    name: "Lee Chong Wei",
+    title: "Three-time Olympic Badminton Silver Medalist",
   },
   {
-    quote: "Strive not to be a success, but rather to be of value.",
-    name: "Albert Einstein",
-    title: "Theoretical Physicist",
+    quote: "Believe in your training and stay focused on the next rally.",
+    name: "Saina Nehwal",
+    title: "Olympic Bronze Medalist, Badminton",
   },
   {
-    quote:
-      "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.",
-    name: "Albert Einstein",
-    title: "Theoretical Physicist",
-  },
-  {
-    quote: "Don't cry because it's over, smile because it happened.",
-    name: "Dr. Seuss",
-    title: "Author",
-  },
-  {
-    quote: "Be yourself; everyone else is already taken.",
-    name: "Oscar Wilde",
-    title: "Writer and Poet",
-  },
-  {
-    quote: "Be the change that you wish to see in the world.",
-    name: "Mahatma Gandhi",
-    title: "Leader of the Indian independence movement",
-  },
-  {
-    quote: "You must be the change you wish to see in the world.",
-    name: "Mahatma Gandhi",
-    title: "Leader of the Indian independence movement",
-  },
-  {
-    quote: "I have not failed. I've just found 10,000 ways that won't work.",
-    name: "Thomas A. Edison",
-    title: "Inventor and Businessman",
+    quote: "It always seems impossible until you win the final point.",
+    name: "Kento Momota",
+    title: "World Champion, Badminton",
   },
   {
     quote:
-      "The only thing necessary for the triumph of evil is for good men to do nothing.",
-    name: "Edmund Burke",
-    title: "Irish Statesman and Philosopher",
+      "The only limit to your game is the limit you place on yourself. Play with heart and passion.",
+    name: "Ratchanok Intanon",
+    title: "World Champion, Badminton",
+  },
+  {
+    quote: "Life is what happens between rallies; stay calm and keep playing.",
+    name: "Taufik Hidayat",
+    title: "Olympic Gold Medalist, Badminton",
   },
   {
     quote:
-      "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.",
-    name: "Albert Schweitzer",
-    title: "Philosopher, Theologian, and Physician",
+      "The best time to improve your game was yesterday. The second best time is now.",
+    name: "Kevin Sanjaya Sukamuljo",
+    title: "World No. 1 Men's Doubles Player",
   },
   {
     quote:
-      "Happiness is not something ready-made. It comes from your own actions.",
-    name: "Dalai Lama",
-    title: "Spiritual Leader of Tibet",
+      "The future of badminton belongs to those who believe in the beauty of every shot.",
+    name: "Tai Tzu-ying",
+    title: "World No. 1 Women's Singles Player",
   },
   {
     quote:
-      "The only limit to our realization of tomorrow is our doubts of today.",
-    name: "Franklin D. Roosevelt",
-    title: "32nd President of the United States",
-  },
-  {
-    quote: "The way to get started is to quit talking and begin doing.",
-    name: "Walt Disney",
-    title: "Co-founder of The Walt Disney Company",
-  },
-  {
-    quote: "Your time is limited, don't waste it living someone else's life.",
-    name: "Steve Jobs",
-    title: "Co-founder of Apple Inc.",
+      "Strive not to win every match, but to play every shot with precision.",
+    name: "Chen Long",
+    title: "Olympic Gold Medalist, Badminton",
   },
   {
     quote:
-      "Life is not measured by the number of breaths we take, but by the moments that take our breath away.",
-    name: "Maya Angelou",
-    title: "American Poet, Singer, and Civil Rights Activist",
+      "Two things are infinite: the number of shuttles in a match and the lessons you learn from playing.",
+    name: "Kidambi Srikanth",
+    title: "Former World No. 1, Badminton",
   },
   {
     quote:
-      "Don't judge each day by the harvest you reap but by the seeds that you plant.",
-    name: "Robert Louis Stevenson",
-    title: "Scottish Novelist and Poet",
+      "Don't cry over missed shots, smile because you have the chance to play again.",
+    name: "Zhang Ning",
+    title: "Two-time Olympic Gold Medalist, Badminton",
   },
   {
-    quote: "The only way to do great work is to love what you do.",
-    name: "Steve Jobs",
-    title: "Co-founder of Apple Inc.",
-  },
-  {
-    quote: "Don't let yesterday take up too much of today.",
-    name: "Will Rogers",
-    title: "American Stage and Film Actor",
-  },
-  {
-    quote: "It's not whether you get knocked down, it's whether you get up.",
-    name: "Vince Lombardi",
-    title: "American Football Coach",
+    quote: "Be yourself on court; every opponent is already taken.",
+    name: "Akane Yamaguchi",
+    title: "World Champion, Badminton",
   },
   {
     quote:
-      "The road to success and the road to failure are almost exactly the same.",
-    name: "Colin R. Davis",
-    title: "English Conductor for London Symphony Orchestra",
+      "You must be the change you wish to see in your game, one rally at a time.",
+    name: "PV Sindhu",
+    title: "Olympic Silver Medalist, Badminton",
+  },
+  {
+    quote: "I've found thousands of ways to improve my footwork.",
+    name: "Marcus Fernaldi Gideon",
+    title: "World No. 1 Men's Doubles Player",
   },
   {
     quote:
-      "What you get by achieving your goals is not as important as what you become by achieving your goals.",
-    name: "Zig Ziglar",
-    title: "American Author, Salesperson, and Motivational Speaker",
+      "The only thing necessary for winning is to never give up after losing a point.",
+    name: "Jan O. Jørgensen",
+    title: "Former World No. 2, Badminton",
+  },
+  {
+    quote:
+      "Success in badminton isn’t about winning every rally, but loving every second on the court.",
+    name: "Zhao Yunlei",
+    title: "Olympic Gold Medalist, Badminton",
+  },
+  {
+    quote:
+      "Happiness in badminton comes from the rallies you fight for, not the points handed to you.",
+    name: "Yuta Watanabe",
+    title: "World No. 1 Mixed Doubles Player",
+  },
+  {
+    quote:
+      "The only limit to our improvement tomorrow is the hesitation to train today.",
+    name: "Mads Pieler Kolding",
+    title: "Danish Badminton Player",
+  },
+  {
+    quote: "The way to start winning is to quit doubting your next smash.",
+    name: "Lee Yong-dae",
+    title: "Olympic Gold Medalist, Badminton",
+  },
+  {
+    quote:
+      "Your time on court is limited, don't waste it playing anyone else's game.",
+    name: "Peter Gade",
+    title: "Former World No. 1, Badminton",
+  },
+  {
+    quote:
+      "Badminton is not measured by the number of wins but by the rallies that take your breath away.",
+    name: "Carolina Marin",
+    title: "Olympic Gold Medalist, Badminton",
+  },
+  {
+    quote:
+      "Don’t judge a match by the number of points you score but by the effort you put into every rally.",
+    name: "Koo Kien Keat",
+    title: "Former World No. 1, Badminton",
+  },
+  {
+    quote: "The only way to do great rallies is to love the game you play.",
+    name: "Mohammad Ahsan",
+    title: "World Champion, Badminton",
+  },
+  {
+    quote: "Don’t let a lost rally take up too much of your match.",
+    name: "Hendra Setiawan",
+    title: "Olympic Gold Medalist, Badminton",
+  },
+  {
+    quote: "It's not whether you lose a point, it's whether you win the rally.",
+    name: "Viktor Axelsen",
+    title: "World Champion, Badminton",
+  },
+  {
+    quote:
+      "The road to victory and the road to defeat are paved with the same number of shuttles.",
+    name: "Kento Momota",
+    title: "World Champion, Badminton",
+  },
+  {
+    quote:
+      "What you become as a badminton player is more important than the points you achieve.",
+    name: "P. V. Sindhu",
+    title: "Olympic Silver Medalist, Badminton",
   },
 ];
 

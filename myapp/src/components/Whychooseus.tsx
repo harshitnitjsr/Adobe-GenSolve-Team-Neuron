@@ -5,52 +5,47 @@ import Image from "next/image";
 import img from "../../public/Screenshot (1).png";
 const musicschool = [
   {
-    title: "Collaborative Editing",
+    title: "Collaborative Team Play",
     description:
-      "Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
+      "Badminton is a game of speed and strategy, and teamwork is crucial. Practice and play together with your partner, syncing movements, strategies, and reflexes. Master the art of collaboration on the court and dominate your opponents with seamless coordination.",
     content: (
       <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        Collaborative Editing
+        <p>Collaborative Team Play</p>
       </div>
     ),
   },
   {
-    title: "Real time changes",
+    title: "Real-time Reaction Training",
     description:
-      "See changes as they happen. With our platform, you can track every modification in real time. No more confusion about the latest version of your project. Say goodbye to the chaos of version control and embrace the simplicity of real-time updates.",
+      "In badminton, every second counts. Develop your reaction time to handle every smash, drop, and clear in real time. Experience immersive training with drills that simulate live match conditions, tracking your every move.",
     content: (
       <div className="h-full w-full  flex items-center justify-center text-white">
-        <Image
-          src={img}
-          width={300}
-          height={300}
-          className="h-full w-full object-cover"
-          alt="linear board demo"
-        />
+        Real-Time Reaction Training
       </div>
     ),
   },
   {
-    title: "Version control",
+    title: "Match Strategy and Control",
     description:
-      "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
+      "Master the game with deep strategy. Understand your opponents' weaknesses and plan your moves in advance. Our platform provides detailed analytics to enhance your game awareness, enabling real-time decisions and perfect execution.",
     content: (
       <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] flex items-center justify-center text-white">
-        Version control
+        <p>Match Strategy and Control</p>
       </div>
     ),
   },
   {
-    title: "Running out of content",
+    title: "Endurance and Focus Training",
     description:
-      "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
+      "Every match is a test of endurance and mental strength. Build up your stamina and focus through advanced training programs designed for badminton players. Our drills will push your limits and help you stay sharp even in long rallies.",
     content: (
       <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        Running out of content
+        Endurance and Focus Training
       </div>
     ),
   },
 ];
+
 function Whychooseus() {
   return (
     <div>

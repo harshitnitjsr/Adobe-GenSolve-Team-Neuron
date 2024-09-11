@@ -10,21 +10,21 @@ const people = [
     name: "Harshit Shrivastav",
     designation: "Backend , Frontend and Computer Vision",
     image:
-      "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
+      "https://media.licdn.com/dms/image/v2/D4D03AQGVRCU-YeZUoA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1685977384203?e=1731542400&v=beta&t=NFMvVh5d43n3s4SNhBiWfLWEjFMszqa1RDep0k3fpDQ",
   },
   {
     id: 2,
     name: "Pratap Kumar",
     designation: "Computer Vision , Backend and Deep Learning",
     image:
-      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+      "https://media.licdn.com/dms/image/v2/D4D03AQFjjcefi_huuA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1720455958378?e=1731542400&v=beta&t=3bVROC5rHPI0dpXMwD4EZMmqg3kRpW6b9NLgL_VNNec",
   },
   {
     id: 3,
     name: "Abhijeet Kumar Trivedi",
     designation: "Frontend and Backend",
     image:
-      "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
+      "https://media.licdn.com/dms/image/v2/D4D03AQFYKOi9jzQdxA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1696354174274?e=1731542400&v=beta&t=9ADgG9ILgvv5DBcQx62h5euV6HbGQPp88iyWgJBk5Qg",
   },
 ];
 function MeetOurInstructors() {
@@ -34,11 +34,14 @@ function MeetOurInstructors() {
         <h2 className="text-2xl md:text-4xl lg:text-7xl text-white font-bold text-center mb-8">
           Meet Our Team
         </h2>
-        <p className="text-base md:text-lg text-white items-center mb-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-          pariatur error qui? Dolore similique, amet, aperiam eos libero magnam,
-          ea nihil consequuntur quia quos dolor ut officia. Vero, magni
-          repellat!
+        <p className="text-base md:text-lg text-white items-center mb-4 ">
+          Our Frontend Developers bring your ideas to life with intuitive,
+          responsive, and engaging user interfaces. Our Backend Experts ensure a
+          seamless and secure experience, managing data flow and building
+          scalable architectures. Our Computer Vision Engineers harness the
+          power of AI to interpret visual data, enabling innovative, real-time
+          solutions. Together, we create cutting-edge technology that drives
+          impact across every project.
         </p>
         <div className="flex flex-row items-center justify-center mb-10 w-full ">
           <AnimatedTooltip items={people} />
