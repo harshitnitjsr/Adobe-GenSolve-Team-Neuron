@@ -71,6 +71,36 @@ GAMESENSE is an advanced sports tracking system designed to provide real-time da
 ---
 
 
+## Installation
+
+### 1. Clone the Repository
+```bash
+git clone <repository-url>
+cd Backend
+```
+
+### 2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Download the Large Files [Google Drive Link](https://drive.google.com/your-link-here)
+- Move the model files to the `Models` folder.
+- Move the checkpoint files to `TrackNetV3/ckpts`.
+- Move any test videos to the `TestVideos` folder.
+
+### 4. Setup
+```bash
+python setup.py install
+```
+### 5. Run
+```bash
+python app.py
+```
+
+
+
+
 ## Technologies Used
 
 
