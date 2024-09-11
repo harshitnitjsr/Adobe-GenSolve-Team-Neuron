@@ -72,7 +72,7 @@ GAMESENSE is an advanced sports tracking system designed to provide real-time da
 
 
 ## Installation
-
+### Backend
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/harshitnitjsr/Adobe-GenSolve-Team-Neuron
@@ -98,8 +98,30 @@ python setup.py install
 python app.py
 ```
 
+### Frontend
+### A.Using Deployed Link [[Deployed Link]](https://adobe-gen-solve-team-neuron.vercel.app/)
 
 
+### B. Locally
+
+
+### 1. Move to Client Directory
+```bash
+cd myapp
+```
+
+### 2. Install dependencies
+```bash
+npm i
+```
+### 3. Setup Gemini 
+Create API for GEMINI 
+and Create .env file and in this file NEXT_PUBLIC_GEMINI_KEY add this.
+
+### 4. Run
+```bash
+npm run dev
+```
 
 ## Technologies Used
 
