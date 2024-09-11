@@ -76,15 +76,15 @@ GAMESENSE is an advanced sports tracking system designed to provide real-time da
 
 | Technology/Algorithm | Icon  |
 |----------------------|-------|
-| YOLO                 | ![YOLO](https://img.shields.io/badge/YOLO-v3-blue) |
+| YOLO                 | ![YOLO](https://img.shields.io/badge/YOLO-v8-blue) |
 | TrackNet v3          | ![TrackNet v3](https://img.shields.io/badge/TrackNet-v3-orange) |
-| DeepSort             | ![DeepSort](https://img.shields.io/badge/DeepSort-v2.0-green) |
-| OpenCV               | ![OpenCV](https://img.shields.io/badge/OpenCV-3.4.3-brightgreen) |
-| NumPy                | ![NumPy](https://img.shields.io/badge/NumPy-1.21-blue) |
-| Python               | ![Python](https://img.shields.io/badge/Python-3.8-blue) |
-| Next.js              | ![Next.js](https://img.shields.io/badge/Next.js-12.0-black) |
-| Socket.io            | ![Socket.io](https://img.shields.io/badge/Socket.io-v4.0-black) |
-| Flask                | ![Flask](https://img.shields.io/badge/Flask-v2.0.1-blue) |
+| DeepSort             | ![DeepSort](https://img.shields.io/badge/DeepSort-green) |
+| OpenCV               | ![OpenCV](https://img.shields.io/badge/OpenCV-brightgreen) |
+| NumPy                | ![NumPy](https://img.shields.io/badge/NumPy-blue) |
+| Python               | ![Python](https://img.shields.io/badge/Python-blue) |
+| Next.js              | ![Next.js](https://img.shields.io/badge/Next.js-black) |
+| Socket.io            | ![Socket.io](https://img.shields.io/badge/Socket.io-black) |
+| Flask                | ![Flask](https://img.shields.io/badge/Flask-blue) |
 
 ### Algorithms Used
 - **TrackNet v3**: Used for shuttlecock tracking and trajectory estimation.
