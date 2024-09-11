@@ -27,7 +27,7 @@ def main():
     court_model = YOLO('Models/PlayAreaDetect.pt')
     # tracking_model = YOLO("Models/best (12).pt")
     # Load the video
-    video_path = 'TestVideos/Angle1 (online-video-cutter.com).mp4'
+    video_path = 'TestVideos/Badminton.mp4'
     cap = load_video(video_path)
 
     # Detect court and transform perspective
